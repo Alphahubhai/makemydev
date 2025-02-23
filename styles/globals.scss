@@ -1,0 +1,123 @@
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; // This accounts for the fixed navbar height
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+}
+
+body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+// Disable scroll-snap for smaller screens or when user prefers reduced motion
+@media (max-width: 768px), (prefers-reduced-motion: reduce) {
+  html {
+    scroll-snap-type: none;
+  }
+}
+
+section[id] {
+  scroll-margin-top: 80px;
+}
+
+/* For Safari browser */
+@media screen and (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* First, remove ALL default scrollbars */
+html, body, div, * {
+  -ms-overflow-style: none !important;  /* IE and Edge */
+  scrollbar-width: none !important;  /* Firefox */
+  
+  &::-webkit-scrollbar {
+    width: 0 !important;
+    display: none !important;  /* Chrome, Safari, Opera */
+  }
+}
+
+/* Modern Scrollbar */
+.scrollbar-track {
+  position: fixed;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 70vh;
+  background: rgba(229, 208, 172, 0.15);
+  border-radius: 20px;
+  z-index: 9999;
+  backdrop-filter: blur(8px);
+  box-shadow: 
+    inset 0 0 0 1px rgba(163, 29, 29, 0.1),
+    0 4px 12px rgba(109, 35, 35, 0.1);
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 4px;
+    background: #A31D1D;
+    border-radius: 50%;
+    opacity: 0.5;
+  }
+
+  &::before {
+    top: -8px;
+  }
+
+  &::after {
+    bottom: -8px;
+  }
+}
+
+.scrollbar-thumb {
+  position: absolute;
+  width: 100%;
+  background: linear-gradient(180deg, #A31D1D 0%, #6D2323 100%);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  &:hover {
+    width: 12px;
+    right: -2px;
+    background: linear-gradient(180deg, #6D2323 0%, #A31D1D 100%);
+    box-shadow: 
+      0 4px 12px rgba(163, 29, 29, 0.3),
+      0 2px 6px rgba(109, 35, 35, 0.2);
+  }
+}
+
+/* Modal Scrollbar */
+.modalContent {
+  position: relative;
+  overflow-y: auto;
+  max-height: 90vh;
+  
+  &::-webkit-scrollbar {
+    width: 4px !important;
+    display: block !important;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: rgba(229, 208, 172, 0.1);
+    margin: 1rem;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: #A31D1D;
+    border-radius: 4px;
+    
+    &:hover {
+      background: #6D2323;
+    }
+  }
+} 

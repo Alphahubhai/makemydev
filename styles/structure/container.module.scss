@@ -1,0 +1,39 @@
+@import '../scss/_mixins';
+
+.fullScreen {
+	width: 100%;
+	max-width: 100%;
+}
+
+.readingWidth {
+	width: 100%;
+	max-width: var(--reading-width);
+	margin-left: auto;
+	margin-right: auto;
+
+	display: flex;
+	flex-direction: column;
+}
+
+@include media($max: $mobile) {
+	.readingWidth {
+		width: calc(100% - 2rem);
+		margin-left: 1rem;
+		margin-right: 1rem;
+	}
+}
+
+.container {
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 1rem;
+	
+	@media (min-width: 640px) {
+		padding: 0 1.5rem;
+	}
+	
+	@media (min-width: 1024px) {
+		padding: 0 2rem;
+	}
+}
